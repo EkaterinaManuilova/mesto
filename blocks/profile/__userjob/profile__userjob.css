@@ -1,0 +1,18 @@
+.profile__userjob {
+    font-size: 18px;
+    line-height: 21.78px;
+    font-weight: 400;
+    margin: 0 auto;
+    margin-top: 8px;
+}
+
+@media screen and (max-width:760px) {
+    .profile__userjob {
+        font-size: 14px;
+        line-height: 16.94px;
+        font-weight: 500;
+        margin-top: 9px;
+        text-align: center;
+        margin-bottom: 33px;
+    }
+}

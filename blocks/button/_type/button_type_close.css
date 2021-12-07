@@ -1,0 +1,21 @@
+.button_type_close {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 0;
+    transition: opacity linear .5s;
+    background-image: url(./images/Close\ Icon.svg);
+    border: 0;
+    top: -40px;
+    right: -40px;
+}
+
+@media screen and (max-width:760px) {
+    .button_type_close {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 16px;
+        right: 0;
+        top: -36px;
+    } 
+}
