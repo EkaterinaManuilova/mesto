@@ -1,0 +1,11 @@
+.popup {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+}
