@@ -4,7 +4,7 @@
     position: absolute;
     right: 0;
     transition: opacity linear .5s;
-    background-image: url(./images/Close\ Icon.svg);
+    background-image: url(../../../images/Close\ Icon.svg);
     border: 0;
     top: -40px;
     right: -40px;
