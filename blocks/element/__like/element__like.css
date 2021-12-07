@@ -1,0 +1,10 @@
+.element__like {
+    margin: 1px 3px 1px 1px;
+    width: 24px;
+    height: 21px;
+    transition: opacity linear .5s;
+    background-image: url(../../../images/like.svg);
+    padding: 0;
+    border: 0;
+    background-color: #FFFFFF;
+}
