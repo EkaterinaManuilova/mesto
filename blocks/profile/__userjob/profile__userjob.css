@@ -1,13 +1,18 @@
 .profile__userjob {
+    max-width: 294px;
     font-size: 18px;
     line-height: 21.78px;
     font-weight: 400;
     margin: 0 auto;
     margin-top: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width:760px) {
     .profile__userjob {
+        max-width: 282px;
         font-size: 14px;
         line-height: 16.94px;
         font-weight: 500;
