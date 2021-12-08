@@ -15,8 +15,8 @@ let formElement = document.querySelector('.form_type_edit');
 //пишем функцию для  получения введенных  в форму значений и присваиваем их тсоответствующим екстовым полям профиля
 function formSubmitHandler(evt) {
 	evt.preventDefault(); //отменяем стандартные действия браузера
-	let nameInput = formElement.querySelector(".input__username").value;
-	let jobInput = formElement.querySelector(".input__profession").value;
+	let nameInput = formElement.querySelector(".username").value;
+	let jobInput = formElement.querySelector(".profession").value;
 	
     document.querySelector(".profile__username").textContent = nameInput;
     document.querySelector(".profile__userjob").textContent = jobInput;
