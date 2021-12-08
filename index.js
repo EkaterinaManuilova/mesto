@@ -32,7 +32,7 @@ let elementLike = document.querySelectorAll('.element__like');//выбираем
 function Like() {
     this.classList.toggle('activated');
 }
-//перебираем сердечки и вешаем обработчик клина на выбранные с функцией
+//перебираем сердечки и вешаем обработчик клика на выбранные с функцией
 //for (i=0; i<elementLike.length; i++) {
     //elementLike[i].addEventListener('click',Like)
 //}
