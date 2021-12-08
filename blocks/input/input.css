@@ -17,18 +17,26 @@
 
 @media screen and (max-width:760px) {
     .input {
-        width: 84%;
+        width: 100%;
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
+        padding-bottom: 7px;
     } 
 }
 
 .input:first-of-type {
     margin-top: 0;
 }
+
 .input:last-of-type {
     margin-bottom: 0;
+}
+
+@media screen and (max-width:760px) {
+    .input:last-of-type {
+        padding-bottom: 9px;
+    } 
 }
 
 .input:focus {
