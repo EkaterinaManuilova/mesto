@@ -2,7 +2,6 @@
     width: 32px;
     height: 32px;
     position: absolute;
-    right: 0;
     transition: opacity linear .5s;
     background-image: url(../../../images/Close\ Icon.svg);
     border: 0;
