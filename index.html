@@ -17,20 +17,20 @@
         <main>
             <section class="profile">
                 <div class="profile__info">
-                    <span class="profile__ellipse">
+                    <div class="profile__ellipse">
                         <img class="profile__avatar" src="./images/Cousteau.jpg" alt="Портрет Жака Ива Кусто">
-                    </span>
+                    </div>
                     <div class="profile__description">
                         <div>
                             <h1 class="profile__username">Жак-Ив Кусто</h1>
                             <p class="profile__userjob">Исследователь океана</p>
                         </div>
-                        <button class="button button_type_edit">
+                        <button class="button button_type_edit" type="button">
                             <img class="button__edit-image" src="./images/edit-image.svg" alt="Карандаш">  
                         </button>
                     </div>
                 </div>
-                <button class="button button_type_add">
+                <button class="button button_type_add" type="button">
                     <img class="button__add-image" src="./images/add-image.svg" alt="Плюс">
                 </button>
             </section>
@@ -41,60 +41,46 @@
                         <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Каменный замок">
                         <div class="element__description">
                             <h2 class="element__title">Карачаево Черкессия</h2>
-                            <button class="button element__like"></button>
+                            <button class="button element__like" type="button"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Далеко на горизонте гора и закат">
                         <div class="element__description">
                             <h2 class="element__title">Гора Эльбрус</h2>
-                            <button class="button element__like"></button>   
+                            <button class="button element__like" type="button"></button>   
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Заснеженные склоны гор">
                         <div class="element__description">
                             <h2 class="element__title">Домбай</h2>
-                            <button class="button element__like"></button>   
+                            <button class="button element__like" type="button"></button>   
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/ray-zhou-JFbn2iReTV4-unsplash.jpg" alt="Залив Сан-Францискои мос Золотые ворота">
                         <div class="element__description">
                             <h2 class="element__title">Сан-Франциско</h2>
-                            <button class="button element__like"></button>   
+                            <button class="button element__like" type="button"></button>   
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/lesya-soboleva-qJPtYZbOMV0-unsplash.jpg" alt="Петропавловская крепость">
                         <div class="element__description">
                             <h2 class="element__title">Санкт-Петербург</h2>
-                            <button class="button element__like"></button>   
+                            <button class="button element__like" type="button"></button>   
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/sergey-semukhin-e0WN3koMMMk-unsplash.jpg" alt="Улица Токаревская Кошка">
                         <div class="element__description">
                             <h2 class="element__title">Владивосток</h2>
-                            <button class="button element__like"></button>   
+                            <button class="button element__like" type="button"></button>   
                         </div>
                     </li>
                 </ul>
             </section>
-
-            <div class="popup popup_type_edit">
-                <div class="popup__container">  
-                    <button type="button" class="button button_type_close"></button>
-                    <h3 class="popup__title">Редактировать профиль</h3>
-                    <form class="form form_type_edit" name="editForm">  
-                        <div class="form__content">
-                            <input class="input username" type="text" placeholder="Жак Ив Кусто" value="Жак Ив Кусто" name="formusername" id="form-username" required>
-                            <input class="input profession" type="text" placeholder="Исследователь океана" value="Исследователь океана" name="form-profession" id="form-profession" required>     
-                        </div>
-                        <button type="submit" class="button button_type_submit">Сохранить</button> 
-                    </form>
-                </div>
-            </div>
 
         </main>
 
@@ -102,7 +88,21 @@
             <p class="footer__copyright"> 2020 Mesto Russia</p>
         </footer>
 
+        <div class="popup popup_type_edit">
+            <div class="popup__container">  
+                <button type="button" class="button button_type_close"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="form form_type_edit" name="editForm">  
+                    <div class="form__content">
+                        <input class="form__input form__input_name_username" type="text" placeholder="Имя" name="formusername" id="form-username" required>
+                        <input class="form__input form__input_name_profession" type="text" placeholder="О себе" name="formprofession" id="form-profession" required>     
+                    </div>
+                    <button type="submit" class="button button_type_submit">Сохранить</button> 
+                </form>
+            </div>
+        </div>
+
     </div>
-    <script src="index.js"></script>
+    <script src="/scripts/index.js"></script>
 </body>
 </html>

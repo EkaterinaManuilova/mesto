@@ -7,6 +7,12 @@
     border: 0;
     top: -40px;
     right: -40px;
+    transition: opacity linear .5s;
+}
+
+.button_type_close:hover {
+    opacity: .6;
+    transition: opacity linear .5s;
 }
 
 @media screen and (max-width:760px) {

@@ -11,6 +11,11 @@
     transition: opacity linear .5s;
 } 
 
+.button_type_submit:hover {
+    opacity: .8;
+    transition: opacity linear .5s;
+}
+
 @media screen and (max-width:760px) {
     .button_type_submit {
         width: 238px;

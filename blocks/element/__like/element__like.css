@@ -5,6 +5,13 @@
     background-image: url(../../../images/like.svg);
     padding: 0;
     border: 0;
+    opacity: .8;
+    transition: opacity linear .5s;
+}
+
+.element__like:hover {
+    opacity: .5;
+    transition: opacity linear .5s;
 }
 
 .element__like:active {
