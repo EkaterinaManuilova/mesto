@@ -5,6 +5,12 @@
     padding: 0;
     border: #FFFFFF 1px solid;
     margin-top: 15px;
+    transition: opacity linear .5s;
+}
+
+.button_type_edit:hover {
+    opacity: .6;
+    transition: opacity linear .5s;
 }
 
 @media screen and (max-width:950px) {

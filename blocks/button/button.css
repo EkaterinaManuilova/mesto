@@ -9,8 +9,3 @@
     border: 0;
     cursor: pointer;
 }
-
-.button:hover {
-    opacity: .6;
-    transition: opacity linear .5s;
-}
