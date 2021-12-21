@@ -71,7 +71,7 @@ const imageFormClose = () => {
     imagePopup.classList.remove('popup_opened');
 }
 
-function addCard(nameValue, linkValue) {
+const addCard = (nameValue, linkValue) => {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
     const cardElementTitle = cardElement.querySelector('.element__title');
@@ -84,7 +84,7 @@ function addCard(nameValue, linkValue) {
     cardElementImage.setAttribute('src', linkValue);
     cardElementImage.setAttribute('alt', nameValue);
 
-    cardElementImage.addEventListener('click', () =>{
+    cardElementImage.addEventListener('click', () => {
         imagePopup.classList.add('popup_opened');
         linkImage.setAttribute('src', linkValue);
         titleImage.textContent = nameValue;
