@@ -6,6 +6,12 @@ let profileUserName = document.querySelector('.profile__username');
 let profileUserJob = document.querySelector('.profile__userjob');
 let nameInput = formElement.querySelector('.form__input_name_username');
 let jobInput = formElement.querySelector('.form__input_name_profession');
+const cardsContainer = document.querySelector('.elements');
+const addButton = document.querySelector('.button_type_add');
+const addPopup = document.querySelector('.popup_type_add');
+const addCloseButton = addPopup.querySelector('.button_type_close');
+const addFormElement = document.querySelector('.form_type_add');
+
 
 const initialCards = [
     {
@@ -54,6 +60,10 @@ const formSubmitHandler = evt => {
     editFormClose();
 }
 
+const addForm = () => {
+    addPopup.classList.toggle('popup_opened');
+}
+
 function addCard(nameValue, linkValue) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
@@ -84,12 +94,26 @@ function addCard(nameValue, linkValue) {
     cardsContainer.prepend(cardElement);
 }
 
-initialCards.forEach(function(element){
+const addNewCard = event => {
+    const nameNewCard = addFormElement.querySelector('.form__input_name_placetitle');
+    const linkNewCard = addFormElement.querySelector('.form__input_name_placeurl');
+    
+    event.preventDefault();
+
+    addCard(nameNewCard.value, linkNewCard.value);
+
+    addForm();
+}
+
+initialCards.forEach(function(element) {
     addCard(element.name, element.link);
 });
 
 editButton.addEventListener('click', editForm);
 editCloseButton.addEventListener('click', editFormClose);
 formElement.addEventListener('submit', formSubmitHandler);
+addButton.addEventListener('click', addForm);
+addCloseButton.addEventListener('click', addForm);
+addFormElement.addEventListener('submit', addNewCard);
 
 

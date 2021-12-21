@@ -95,6 +95,21 @@
                 </form>
             </div>
         </div>
+
+        <div class="popup popup_type_add">
+            <div class="popup__container">
+                <button type="button" class="button button_type_close"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form class="form form_type_add" name="addForm">
+                    <div class="form__content">
+                        <input  class="form__input form__input_name_placetitle" type="text" placeholder="Название" name="placename" reqired>
+                        <input  class="form__input form__input_name_placeurl" type="url" placeholder="Ссылка на картинку" name="placelink" reqired>
+                    </div>
+                    <button  type="submit" class="button button_type_submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
         <template id="card-template">
             <li class="element">
                 <img class="element__image" src="" alt="">
