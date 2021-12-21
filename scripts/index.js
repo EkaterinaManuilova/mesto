@@ -104,15 +104,15 @@ const addCard = (nameValue, linkValue) => {
 const addNewCard = event => {
     event.preventDefault();
 
-    let nameNewCard = addFormElement.querySelector('.form__input_name_placetitle').value;
-    let linkNewCard = addFormElement.querySelector('.form__input_name_placeurl').value;
+    const nameNewCard = addFormElement.querySelector('.form__input_name_placetitle').value;
+    const linkNewCard = addFormElement.querySelector('.form__input_name_placeurl').value;
 
     addCard(nameNewCard, linkNewCard);
 
     addForm();
 }
 
-initialCards.forEach(function(element) {
+initialCards.reverse().forEach(function(element) {
     addCard(element.name, element.link);
 });
 
