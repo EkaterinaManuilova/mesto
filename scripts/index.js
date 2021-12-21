@@ -11,7 +11,10 @@ const addButton = document.querySelector('.button_type_add');
 const addPopup = document.querySelector('.popup_type_add');
 const addCloseButton = addPopup.querySelector('.button_type_close');
 const addFormElement = document.querySelector('.form_type_add');
-
+const imagePopup = document.querySelector('.popup_type_image');
+const imageCloseButton = imagePopup.querySelector('.button_type_close');
+let linkImage = imagePopup.querySelector('.popup__image-link');
+let titleImage = imagePopup.querySelector('.popup__image-title');
 
 const initialCards = [
     {
@@ -64,6 +67,10 @@ const addForm = () => {
     addPopup.classList.toggle('popup_opened');
 }
 
+const imageFormClose = () => {
+    imagePopup.classList.remove('popup_opened');
+}
+
 function addCard(nameValue, linkValue) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
@@ -77,7 +84,7 @@ function addCard(nameValue, linkValue) {
     cardElementImage.setAttribute('src', linkValue);
     cardElementImage.setAttribute('alt', nameValue);
 
-    cardElement.addEventListener('click', () =>{
+    cardElementImage.addEventListener('click', () =>{
         imagePopup.classList.add('popup_opened');
         linkImage.setAttribute('src', linkValue);
         titleImage.textContent = nameValue;
@@ -95,12 +102,12 @@ function addCard(nameValue, linkValue) {
 }
 
 const addNewCard = event => {
-    const nameNewCard = addFormElement.querySelector('.form__input_name_placetitle');
-    const linkNewCard = addFormElement.querySelector('.form__input_name_placeurl');
-    
     event.preventDefault();
 
-    addCard(nameNewCard.value, linkNewCard.value);
+    let nameNewCard = addFormElement.querySelector('.form__input_name_placetitle').value;
+    let linkNewCard = addFormElement.querySelector('.form__input_name_placeurl').value;
+
+    addCard(nameNewCard, linkNewCard);
 
     addForm();
 }
@@ -115,5 +122,6 @@ formElement.addEventListener('submit', formSubmitHandler);
 addButton.addEventListener('click', addForm);
 addCloseButton.addEventListener('click', addForm);
 addFormElement.addEventListener('submit', addNewCard);
+imageCloseButton.addEventListener('click', imageFormClose);
 
 
