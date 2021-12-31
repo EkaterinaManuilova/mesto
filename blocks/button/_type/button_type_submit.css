@@ -11,7 +11,7 @@
     transition: opacity linear .5s;
 } 
 
-.button_type_submit:hover {
+.button_type_submit:not([disabled]):hover {
     opacity: .8;
     transition: opacity linear .5s;
 }
