@@ -50,7 +50,7 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
-  
+
   const closePopupOnEscape = (evt) => {
     if (evt.key === 'Escape') {
       const openedPopup = document.querySelector('.popup_opened');
@@ -142,7 +142,7 @@ const addCard = (name, link) => {
     const cardElement = createCard(name, link);
     cardsContainer.prepend(cardElement);
 }
-
+  
 const addNewCard = event => {
     event.preventDefault();
 
