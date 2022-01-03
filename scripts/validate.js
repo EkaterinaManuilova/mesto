@@ -37,22 +37,22 @@ const showInputError = (formElement, inputElement, errorMessage, props) => {
   }
   
   const setEventListeners = (formElement,  props) => {
-    const inputList = Array.from(formElement.querySelectorAll(props.inputSelector));
+    const inputs = Array.from(formElement.querySelectorAll(props.inputSelector));
     const buttonElement = formElement.querySelector(props.submitButtonSelector);
 
-    toggleButtonState(inputList, buttonElement, props.inactiveButtonClass);
+    toggleButtonState(inputs, buttonElement, props.inactiveButtonClass);
 
-    inputList.forEach((inputElement) => {
+    inputs.forEach((inputElement) => {
       inputElement.addEventListener('input', (evt) => {
-        toggleButtonState(inputList, buttonElement, props.inactiveButtonClass);
+        toggleButtonState(inputs, buttonElement, props.inactiveButtonClass);
         checkInputValidity(formElement, inputElement, props);
       });
     });
   }
   
   const enableValidation = (props) => {
-    const formList = Array.from(document.querySelectorAll(props.formSelector));
-    formList.forEach((formElement) => {
+    const forms = Array.from(document.querySelectorAll(props.formSelector));
+    forms.forEach((formElement) => {
       setEventListeners(formElement, props);
     });
   }
