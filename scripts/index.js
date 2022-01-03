@@ -13,8 +13,8 @@ const addButton = document.querySelector('.button_type_add');
 const addPopup = document.querySelector('.popup_type_add');
 const addCloseButton = addPopup.querySelector('.button_type_close');
 const addForm = document.querySelector('.form_type_add');
-const addFormTitle = addForm.querySelector('.form__input_name_placetitle')
-const addFormLink = addForm.querySelector('.form__input_name_placeurl')
+const addFormTitle = addForm.querySelector('.form__input_name_placetitle');
+const addFormLink = addForm.querySelector('.form__input_name_placeurl');
 const addSubmitButton = addForm.querySelector('.button_type_submit');
 
 const imagePopup = document.querySelector('.popup_type_image');
@@ -53,25 +53,29 @@ const initialCards = [
 
 const openPopup = popup => {
     popup.classList.add('popup_opened');
+
     popup.addEventListener('click', (event) => {
         if  (event.target === event.currentTarget) {
             popup.classList.remove('popup_opened');
-           }
+        }
     });
-       document.addEventListener('keydown', (event) => {
-            if  (event.key === 'Escape') {
+
+    document.addEventListener('keydown', (event) => {
+        if  (event.key === 'Escape') {
                 popup.classList.remove('popup_opened');
-           }
+        }
         });
 }
 
 const closePopup = popup => {
-   popup.classList.remove('popup_opened');
-   popup.removeEventListener('click', (event) => {
-    if  (event.target === event.currentTarget) {
-        popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_opened');
+
+    popup.removeEventListener('click', (event) => {
+        if  (event.target === event.currentTarget) {
+            popup.classList.remove('popup_opened');
        }
 });
+
     document.removeEventListener('keyup', (event) => {
         if  (event.key === 'Escape') {
             popup.classList.remove('popup_opened');
@@ -81,6 +85,7 @@ const closePopup = popup => {
 
 const openEditPopup = () =>  {
     openPopup(editPopup);
+
     nameInput.value = profileUserName.textContent;
     jobInput.value = profileUserJob.textContent;
 }
@@ -131,7 +136,7 @@ cardsContainer.addEventListener('click', (evt) => {
         linkImage.setAttribute('src', evt.target.getAttribute('src'));
         linkImage.setAttribute('alt', evt.target.getAttribute('alt'));
         titleImage.textContent = evt.target.getAttribute('alt'); 
-    };
+    }
 });
 
 cardsContainer.addEventListener('click', (evt) => {

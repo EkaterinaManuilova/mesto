@@ -64,4 +64,4 @@ const showInputError = (formElement, inputElement, errorMessage, props) => {
     inactiveButtonClass: 'button_disabled',
     inputErrorClass: 'form__input_name_error',
     errorClass: 'form__input-error_active'
-  }); 
+  });
