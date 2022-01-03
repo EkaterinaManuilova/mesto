@@ -12,6 +12,11 @@ const showInputError = (formElement, inputElement, errorMessage, props) => {
     errorElement.textContent = '';
   }
 
+  const disableButton = (button) => {
+      button.setAttribute('disabled', true);
+      button.classList.add('button_disabled');
+  }
+
   const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;

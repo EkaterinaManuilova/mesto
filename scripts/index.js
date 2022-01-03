@@ -170,6 +170,7 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 addButton.addEventListener('click', () => {
     openPopup(addPopup);
+    disableButton(addSubmitButton);
 });
 
 addCloseButton.addEventListener('click', () => {
