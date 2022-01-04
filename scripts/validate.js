@@ -14,7 +14,7 @@ const showInputError = (formElement, inputElement, errorMessage, props) => {
 
   const disableButton = (button) => {
       button.setAttribute('disabled', true);
-      button.classList.add('button_disabled');
+      button.classList.add(inactiveButtonClass);
   }
 
   const hasInvalidInput = (inputList) => {
