@@ -14,7 +14,7 @@ const showInputError = (formElement, inputElement, errorMessage, props) => {
 
   const disableButton = (button) => {
       button.setAttribute('disabled', true);
-      button.classList.add(inactiveButtonClass);
+      button.classList.add('button_disabled');
   }
 
   const hasInvalidInput = (inputList) => {
@@ -44,8 +44,6 @@ const showInputError = (formElement, inputElement, errorMessage, props) => {
   const setEventListeners = (formElement,  props) => {
     const inputs = Array.from(formElement.querySelectorAll(props.inputSelector));
     const buttonElement = formElement.querySelector(props.submitButtonSelector);
-
-    toggleButtonState(inputs, buttonElement, props.inactiveButtonClass);
 
     inputs.forEach((inputElement) => {
       inputElement.addEventListener('input', (evt) => {
