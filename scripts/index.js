@@ -1,4 +1,5 @@
-import Card from  './Card.js';
+import {Card} from  './Card.js';
+import {FormValidator} from './FormValidator.js';
 
 const editButton = document.querySelector('.button_type_edit');
 const editPopup = document.querySelector('.popup_type_edit');
@@ -23,8 +24,6 @@ export const imagePopup = document.querySelector('.popup_type_image');
 export const imageCloseButton = imagePopup.querySelector('.button_type_close');
 export const linkImage = imagePopup.querySelector('.popup__image-link');
 export const titleImage = imagePopup.querySelector('.popup__image-title');
-
-
 
 const initialCards = [
     {
@@ -52,6 +51,15 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
+
+  export const validationProps = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.button_type_submit',
+    inactiveButtonClass: 'button_disabled',
+    inputErrorClass: 'form__input_name_error',
+    errorClass: 'form__input-error_active'
+}
 
   export const closePopupOnEscape = (evt) => {
     if (evt.key === 'Escape') {
@@ -83,6 +91,11 @@ export const closePopup = popup => {
 
     document.removeEventListener('keydown', closePopupOnEscape);
 }
+
+const disableButton = (button) => {
+    button.setAttribute('disabled', true);
+    button.classList.add('button_disabled');
+    }
 
 const openEditPopup = () =>  {
     nameInput.value = profileUserName.textContent;
@@ -192,3 +205,8 @@ addForm.addEventListener('submit', addNewCard);
 imageCloseButton.addEventListener('click', () => {
     closePopup(imagePopup);
 });
+
+const profileFormValidator = new FormValidator(validationProps, profileForm);
+const addFormValidator = new FormValidator(validationProps, addForm);
+profileFormValidator.enableValidation();
+addFormValidator.enableValidation();

@@ -1,6 +1,6 @@
-import {imagePopup, imageCloseButton, linkImage, titleImage, openPopup,  closePopup, closePopupClickOverlay, closePopupOnEscape} from './index.js';
+import {imagePopup, imageCloseButton, linkImage, titleImage, openPopup,  closePopup} from './index.js';
 
-export default class Card {
+export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
         this._link = data.link;
@@ -22,13 +22,13 @@ export default class Card {
             this._openPrewiewCard();
         });
         imageCloseButton.addEventListener('click', () => {
-            this._closePrewiewCard();   
+            this._closePrewiewCard();
         });
         this._element.querySelector('.element__like').addEventListener('click', (evt) => {
             this._likeCard(evt);
         });
         this._element.querySelector('.element__trash').addEventListener('click', (evt) => {
-            this._trashCard(evt); 
+            this._trashCard(evt);
         });
     }
 
