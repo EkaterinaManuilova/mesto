@@ -1,4 +1,6 @@
 .element {
     position: relative;
-    display: block;
+    width: 282px;
+    display: flex;
+    flex-direction: column;
 }

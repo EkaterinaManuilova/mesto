@@ -1,3 +1,6 @@
+import {Card} from  './Card.js';
+import {FormValidator} from './FormValidator.js';
+
 const editButton = document.querySelector('.button_type_edit');
 const editPopup = document.querySelector('.popup_type_edit');
 const editCloseButton = editPopup.querySelector('.button_type_close');
@@ -17,12 +20,10 @@ const addFormTitle = addForm.querySelector('.form__input_name_placetitle');
 const addFormLink = addForm.querySelector('.form__input_name_placeurl');
 const addSubmitButton = addForm.querySelector('.button_type_submit');
 
-const imagePopup = document.querySelector('.popup_type_image');
-const imageCloseButton = imagePopup.querySelector('.button_type_close');
-const linkImage = imagePopup.querySelector('.popup__image-link');
-const titleImage = imagePopup.querySelector('.popup__image-title');
-
-
+export const imagePopup = document.querySelector('.popup_type_image');
+export const imageCloseButton = imagePopup.querySelector('.button_type_close');
+export const linkImage = imagePopup.querySelector('.popup__image-link');
+export const titleImage = imagePopup.querySelector('.popup__image-title');
 
 const initialCards = [
     {
@@ -51,14 +52,23 @@ const initialCards = [
     }
   ];
 
-  const closePopupOnEscape = (evt) => {
+  export const validationProps = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.button_type_submit',
+    inactiveButtonClass: 'button_disabled',
+    inputErrorClass: 'form__input_name_error',
+    errorClass: 'form__input-error_active'
+}
+
+  export const closePopupOnEscape = (evt) => {
     if (evt.key === 'Escape') {
       const openedPopup = document.querySelector('.popup_opened');
       closePopup(openedPopup);
     };
   };
   
-  const closePopupClickOverlay = (evt) => {
+  export const closePopupClickOverlay = (evt) => {
     const openedPopup = document.querySelector('.popup_opened');
     if (evt.target === openedPopup) {
       closePopup(openedPopup);
@@ -66,7 +76,7 @@ const initialCards = [
   };
 
 
-const openPopup = popup => {
+export const openPopup = popup => {
     popup.classList.add('popup_opened');
 
     document.addEventListener('click', closePopupClickOverlay);
@@ -74,13 +84,18 @@ const openPopup = popup => {
     document.addEventListener('keydown', closePopupOnEscape);
 }
 
-const closePopup = popup => {
+export const closePopup = popup => {
     popup.classList.remove('popup_opened');
 
     document.removeEventListener('click', closePopupClickOverlay);
 
     document.removeEventListener('keydown', closePopupOnEscape);
 }
+
+const disableButton = (button) => {
+    button.setAttribute('disabled', true);
+    button.classList.add('button_disabled');
+    }
 
 const openEditPopup = () =>  {
     nameInput.value = profileUserName.textContent;
@@ -142,6 +157,8 @@ const addCard = (name, link) => {
     const cardElement = createCard(name, link);
     cardsContainer.prepend(cardElement);
 }
+
+
   
 const addNewCard = event => {
     event.preventDefault();
@@ -156,8 +173,14 @@ const addNewCard = event => {
     addForm.reset();
 }
 
-initialCards.reverse().forEach((element) => {
-    addCard(element.name, element.link);
+//initialCards.reverse().forEach((element) => {
+//    addCard(element.name, element.link);
+//});
+
+initialCards.reverse().forEach((item) => {
+    const card = new Card(item, '.card-template');
+    const cardElement = card.generateCard();
+    cardsContainer.prepend(cardElement);
 });
 
 editButton.addEventListener('click', openEditPopup);
@@ -182,3 +205,8 @@ addForm.addEventListener('submit', addNewCard);
 imageCloseButton.addEventListener('click', () => {
     closePopup(imagePopup);
 });
+
+const profileFormValidator = new FormValidator(validationProps, profileForm);
+const addFormValidator = new FormValidator(validationProps, addForm);
+profileFormValidator.enableValidation();
+addFormValidator.enableValidation();
