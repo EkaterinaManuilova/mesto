@@ -157,8 +157,6 @@ const addCard = (name, link) => {
     const cardElement = createCard(name, link);
     cardsContainer.prepend(cardElement);
 }
-
-
   
 const addNewCard = event => {
     event.preventDefault();
@@ -172,10 +170,6 @@ const addNewCard = event => {
 
     addForm.reset();
 }
-
-//initialCards.reverse().forEach((element) => {
-//    addCard(element.name, element.link);
-//});
 
 initialCards.reverse().forEach((item) => {
     const card = new Card(item, '.card-template');
