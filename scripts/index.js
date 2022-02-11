@@ -10,26 +10,15 @@ import {editButton, editPopup, profileForm, profileUserName, profileUserJob, nam
       closePopup(openedPopup);
     }
   }
-  
-  const closePopupClickOverlay = (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(evt.target);
-    }
-  }
-
 
 const openPopup = popup => {
     popup.classList.add('popup_opened');
-
-    document.addEventListener('click', closePopupClickOverlay);
 
     document.addEventListener('keydown', closePopupOnEscape);
 }
 
 const closePopup = popup => {
     popup.classList.remove('popup_opened');
-
-    document.removeEventListener('click', closePopupClickOverlay);
 
     document.removeEventListener('keydown', closePopupOnEscape);
 }
