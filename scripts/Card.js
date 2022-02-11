@@ -1,10 +1,9 @@
-import {imagePopup, imageCloseButton, linkImage, titleImage, openPopup,  closePopup} from './index.js';
-
 export class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -18,29 +17,18 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._openPrewiewCard();
+        this._cardImage = this._element.querySelector('.element__image');
+        this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link);
         });
-        imageCloseButton.addEventListener('click', () => {
-            this._closePrewiewCard();
-        });
+      
         this._element.querySelector('.element__like').addEventListener('click', (evt) => {
             this._likeCard(evt);
         });
+
         this._element.querySelector('.element__trash').addEventListener('click', (evt) => {
-            this._trashCard(evt);
+            this._deleteCard();
         });
-    }
-
-    _openPrewiewCard() {
-        linkImage.src = this._link;
-        linkImage.alt = this._name;
-        titleImage.textContent = this._name;
-        openPopup(imagePopup);
-    }
-
-    _closePrewiewCard()  {
-        closePopup(imagePopup);
     }
 
     _likeCard(evt) {
@@ -49,10 +37,8 @@ export class Card {
         }
     }
 
-    _trashCard(evt) {
-        if (evt.target.classList.contains('element__trash')) {
-            evt.target.closest('li').remove();
-        }
+    _deleteCard() {
+        this._element.remove();
     }
 
     generateCard() {
@@ -60,8 +46,8 @@ export class Card {
         this._setEventListeners();
 
         this._element.querySelector('.element__title').textContent = this._name;
-        this._element.querySelector('.element__image').alt = this._name;
-        this._element.querySelector('.element__image').src = this._link;
+        this._cardImage.alt = this._name;
+        this._cardImage.src = this._link;
         
         return this._element;
     }
