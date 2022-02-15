@@ -4,7 +4,7 @@ import {editButton, editPopup, profileForm, profileUserName, profileUserJob, nam
     jobInput, cardsContainer, addButton, addPopup, addForm, addFormTitle, addFormLink,
     imagePopup, linkImage, titleImage, popups, formValidators, initialCards, validationProps} from './utils/constants.js';
 
-  const closePopupOnEscape = (evt) => {
+const closePopupOnEscape = (evt) => {
     if (evt.key === 'Escape') {
       const openedPopup = document.querySelector('.popup_opened');
       closePopup(openedPopup);
@@ -60,8 +60,10 @@ const addNewCard = event => {
     const linkNewCard = addFormLink.value;
 
     createCard(nameNewCard, linkNewCard);
+    
     closePopup(addPopup);
-    addForm.reset();
+    //addForm.reset();  
+    formValidators['addForm'].resetValidation();
 }
 
 initialCards.reverse().forEach((item) => {
@@ -81,10 +83,10 @@ addButton.addEventListener('click', () => {
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
+            closePopup(popup);
         }
         if (evt.target.classList.contains('button_type_close')) {
-            closePopup(popup)
+            closePopup(popup);
           }
     });
 }) ;
@@ -98,7 +100,7 @@ const enableValidation = (validationProps) => {
       const formName = formElement.getAttribute('name');
   
       formValidators[formName] = validator;
-     validator.enableValidation();
+      validator.enableValidation();
     });
 }
   
