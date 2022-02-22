@@ -88,23 +88,22 @@ cardList.renderItems();
 //     createCard(item.name, item.link);
 // });
 const cardAddForm = new PopupWithForm ('.popup_type_add', () => {
-    const newItem = {
-        name: addFormTitle.value,
-        link: addFormLink.value}
-        const newCard = new Card (newItem, '.card-template', handleCardClick);
+   const inputValues = {name: addFormTitle.value, link: addFormLink.value }
+   
+        const newCard = new Card (inputValues, '.card-template', handleCardClick);
         const newCardElement = newCard.generateCard();
         cardList.addItem(newCardElement);
-        //cardAddForm.setEventListeners();
+       
         cardAddForm.close();
         
     });
 
-    addButton.addEventListener('click', () => {
+addButton.addEventListener('click', () => {
         cardAddForm.open();
         formValidators['addForm'].resetValidation();
     });
 
-   cardAddForm.setEventListeners();
+cardAddForm.setEventListeners();
 
 editButton.addEventListener('click', openEditPopup);
 

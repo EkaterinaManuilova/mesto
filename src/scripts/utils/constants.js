@@ -10,8 +10,8 @@ export const cardsContainer = document.querySelector('.elements');
 export const addButton = document.querySelector('.button_type_add');
 export const addPopup = document.querySelector('.popup_type_add');
 export const addForm = document.querySelector('.form_type_add');
-export const addFormTitle = addForm.querySelector('.form__input_name_placetitle');
-export const addFormLink = addForm.querySelector('.form__input_name_placeurl');
+export const addFormTitle = document.querySelector('.form__input_name_placetitle');
+export const addFormLink = document.querySelector('.form__input_name_placeurl');
 
 export const imagePopup = document.querySelector('.popup_type_image');
 export const linkImage = imagePopup.querySelector('.popup__image-link');
