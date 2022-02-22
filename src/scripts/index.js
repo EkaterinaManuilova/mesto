@@ -94,7 +94,7 @@ const cardAddForm = new PopupWithForm ('.popup_type_add', () => {
         const newCard = new Card (newItem, '.card-template', handleCardClick);
         const newCardElement = newCard.generateCard();
         cardList.addItem(newCardElement);
-        cardAddForm.setEventListeners();
+        //cardAddForm.setEventListeners();
         cardAddForm.close();
         
     });
@@ -104,7 +104,7 @@ const cardAddForm = new PopupWithForm ('.popup_type_add', () => {
         formValidators['addForm'].resetValidation();
     });
 
-   // cardAddForm.setEventListeners();
+   cardAddForm.setEventListeners();
 
 editButton.addEventListener('click', openEditPopup);
 
