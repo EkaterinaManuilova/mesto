@@ -1,5 +1,7 @@
 import {Card} from  './components/Card.js';
 import {FormValidator} from './components/FormValidator.js';
+import {PopupWithImage} from './components/PopupWithImage.js';
+
 import {editButton, editPopup, profileForm, profileUserName, profileUserJob, nameInput,
     jobInput, cardsContainer, addButton, addPopup, addForm, addFormTitle, addFormLink,
     imagePopup, linkImage, titleImage, popups, formValidators, initialCards, validationProps} from './utils/constants.js';
@@ -40,11 +42,14 @@ const handleProfileFormSubmit = evt => {
 }
 
 const handleCardClick = (name, link) => {
-    linkImage.setAttribute('src', link);
-    linkImage.setAttribute('alt', name);
-    titleImage.textContent = name;
+    const imagePrewiew = new PopupWithImage ('.popup_type_image');
+    imagePrewiew.setEventListeners();
+    imagePrewiew.open(link, name);
+    // linkImage.setAttribute('src', link);
+    // linkImage.setAttribute('alt', name);
+    // titleImage.textContent = name;
 
-    openPopup(imagePopup);
+    // openPopup(imagePopup);
 }
 
 const createCard = (name, link) => {
