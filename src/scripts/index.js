@@ -1,6 +1,7 @@
 import {Card} from  './components/Card.js';
 import {FormValidator} from './components/FormValidator.js';
 import {PopupWithImage} from './components/PopupWithImage.js';
+import {Section} from './components/Section.js';
 
 import {editButton, editPopup, profileForm, profileUserName, profileUserJob, nameInput,
     jobInput, cardsContainer, addButton, addPopup, addForm, addFormTitle, addFormLink,
@@ -71,9 +72,20 @@ const addNewCard = event => {
     formValidators['addForm'].resetValidation();
 }
 
-initialCards.reverse().forEach((item) => {
-    createCard(item.name, item.link);
-});
+const cardList = new Section ({
+    items: initialCards,
+    renderer: (cardItem) => {
+        const card = new Card (cardItem, '.card-template', handleCardClick);
+        const cardElement = card.generateCard();
+        cardList.addItem(cardElement);
+    }
+}, '.elements');
+
+cardList.renderItems();
+
+// initialCards.reverse().forEach((item) => {
+//     createCard(item.name, item.link);
+// });
 
 editButton.addEventListener('click', openEditPopup);
 
