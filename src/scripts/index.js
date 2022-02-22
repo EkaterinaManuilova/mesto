@@ -1,5 +1,5 @@
-import {Card} from  './Card.js';
-import {FormValidator} from './FormValidator.js';
+import {Card} from  './components/Card.js';
+import {FormValidator} from './components/FormValidator.js';
 import {editButton, editPopup, profileForm, profileUserName, profileUserJob, nameInput,
     jobInput, cardsContainer, addButton, addPopup, addForm, addFormTitle, addFormLink,
     imagePopup, linkImage, titleImage, popups, formValidators, initialCards, validationProps} from './utils/constants.js';
