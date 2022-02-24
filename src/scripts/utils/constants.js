@@ -3,8 +3,8 @@ export const editPopup = document.querySelector('.popup_type_edit');
 export const profileForm = document.querySelector('.form_type_edit');
 export const profileUserName = document.querySelector('.profile__username');
 export const profileUserJob = document.querySelector('.profile__userjob');
-export const nameInput = profileForm.querySelector('.form__input_name_username');
-export const jobInput = profileForm.querySelector('.form__input_name_profession');
+export const nameInput = document.querySelector('.form__input_name_username');
+export const jobInput = document.querySelector('.form__input_name_profession');
 
 export const cardsContainer = document.querySelector('.elements');
 export const addButton = document.querySelector('.button_type_add');

@@ -3,45 +3,47 @@ import {FormValidator} from './components/FormValidator.js';
 import { PopupWithForm } from './components/PopupWithForm.js';
 import {PopupWithImage} from './components/PopupWithImage.js';
 import {Section} from './components/Section.js';
+import { UserInfo } from './components/UserInfo.js';
+
 
 import {editButton, editPopup, profileForm, profileUserName, profileUserJob, nameInput,
     jobInput, cardsContainer, addButton, addPopup, addForm, addFormTitle, addFormLink,
     imagePopup, linkImage, titleImage, popups, formValidators, initialCards, validationProps} from './utils/constants.js';
 
-const closePopupOnEscape = (evt) => {
-    if (evt.key === 'Escape') {
-      const openedPopup = document.querySelector('.popup_opened');
-      closePopup(openedPopup);
-    }
-  }
+// const closePopupOnEscape = (evt) => {
+//     if (evt.key === 'Escape') {
+//       const openedPopup = document.querySelector('.popup_opened');
+//       closePopup(openedPopup);
+//     }
+//   }
 
-const openPopup = popup => {
-    popup.classList.add('popup_opened');
+// const openPopup = popup => {
+//     popup.classList.add('popup_opened');
 
-    document.addEventListener('keydown', closePopupOnEscape);
-}
+//     document.addEventListener('keydown', closePopupOnEscape);
+// }
 
-const closePopup = popup => {
-    popup.classList.remove('popup_opened');
+// const closePopup = popup => {
+//     popup.classList.remove('popup_opened');
 
-    document.removeEventListener('keydown', closePopupOnEscape);
-}
+//     document.removeEventListener('keydown', closePopupOnEscape);
+// }
 
-const openEditPopup = () =>  {
-    nameInput.value = profileUserName.textContent;
-    jobInput.value = profileUserJob.textContent;
+// const openEditPopup = () =>  {
+//     nameInput.value = profileUserName.textContent;
+//     jobInput.value = profileUserJob.textContent;
 
-    openPopup(editPopup);
-}
+//     openPopup(editPopup);
+// }
 
-const handleProfileFormSubmit = evt => {
-	evt.preventDefault();
+// const handleProfileFormSubmit = evt => {
+// 	evt.preventDefault();
 	
-	profileUserName.textContent = nameInput.value;
-    profileUserJob.textContent = jobInput.value;
+// 	profileUserName.textContent = nameInput.value;
+//     profileUserJob.textContent = jobInput.value;
 
-   closePopup(editPopup);
-}
+//    closePopup(editPopup);
+// }
 
 const handleCardClick = (name, link) => {
     const imagePrewiew = new PopupWithImage ('.popup_type_image');
@@ -105,9 +107,24 @@ addButton.addEventListener('click', () => {
 
 cardAddForm.setEventListeners();
 
-editButton.addEventListener('click', openEditPopup);
+const userInfo = new UserInfo ('.profile__username', '.profile__userjob');
+const profileEditForm = new PopupWithForm ('.popup_type_edit', () => {
+    userInfo.setUserInfo(nameInput.value, jobInput.value);
+    profileEditForm.close();
+});
 
-profileForm.addEventListener('submit', handleProfileFormSubmit);
+editButton.addEventListener('click', () => {
+   
+    const info = userInfo.getUserInfo();
+    nameInput.value = info.name;
+    jobInput.value = info.job;
+    profileEditForm.open();
+    formValidators['editForm'].resetValidation();
+});
+profileEditForm.setEventListeners();
+// editButton.addEventListener('click', openEditPopup);
+
+// profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 // addButton.addEventListener('click', () => {
 //     addForm.reset();
