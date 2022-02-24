@@ -1,15 +1,15 @@
-//import './index.css';
-import {Card} from  '././components/Card.js';
-import {FormValidator} from '././components/FormValidator.js';
-import {PopupWithForm} from '././components/PopupWithForm.js';
-import {PopupWithImage} from '././components/PopupWithImage.js';
-import {Section} from '././components/Section.js';
-import { UserInfo } from '././components/UserInfo.js';
+
+import {Card} from  '../components/Card.js';
+import {FormValidator} from '../components/FormValidator.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {Section} from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
 
 
 import {editButton, nameInput,
     jobInput, addButton,addFormTitle, addFormLink,
-    formValidators, initialCards, validationProps} from '././utils/constants.js';
+    formValidators, initialCards, validationProps} from '../utils/constants.js';
 
 const handleCardClick = (name, link) => {
     const imagePrewiew = new PopupWithImage ('.popup_type_image');
