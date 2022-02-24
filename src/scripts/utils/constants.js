@@ -1,23 +1,16 @@
-export  const editButton = document.querySelector('.button_type_edit');
-export const editPopup = document.querySelector('.popup_type_edit');
-export const profileForm = document.querySelector('.form_type_edit');
-export const profileUserName = document.querySelector('.profile__username');
-export const profileUserJob = document.querySelector('.profile__userjob');
+export const editButton = document.querySelector('.button_type_edit');
+
 export const nameInput = document.querySelector('.form__input_name_username');
 export const jobInput = document.querySelector('.form__input_name_profession');
 
 export const cardsContainer = document.querySelector('.elements');
 export const addButton = document.querySelector('.button_type_add');
-export const addPopup = document.querySelector('.popup_type_add');
-export const addForm = document.querySelector('.form_type_add');
+
 export const addFormTitle = document.querySelector('.form__input_name_placetitle');
 export const addFormLink = document.querySelector('.form__input_name_placeurl');
 
-export const imagePopup = document.querySelector('.popup_type_image');
-export const linkImage = imagePopup.querySelector('.popup__image-link');
-export const titleImage = imagePopup.querySelector('.popup__image-title');
-
-export const popups = document.querySelectorAll('.popup');
+export const linkImage = document.querySelector('.popup__image-link');
+export const titleImage = document.querySelector('.popup__image-title');
 
 export const formValidators = {};
 
