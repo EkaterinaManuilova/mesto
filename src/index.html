@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./pages/index.css">
+        <!--<link rel="stylesheet" href="./pages/index.css">-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mesto</title>
     </head>
@@ -11,20 +11,20 @@
     <div class="container">
 
         <header class="header">
-            <img class="header__logo" src="./images/mesto.svg" alt="Место">
+            <img src="<%=require('./images/mesto.svg')%>" alt="Место" class="header__logo">
         </header>
 
         <main>
             <section class="profile">
                 <div class="profile__info">
-                    <img class="profile__avatar" src="./images/Cousteau.jpg" alt="Портрет Жака Ива Кусто">
+                    <img class="profile__avatar" src="<%=require('./images/Cousteau.jpg')%>" alt="Портрет Жака Ива Кусто">
                     <h1 class="profile__username">Жак-Ив Кусто</h1>
                     <p class="profile__userjob">Исследователь океана</p>
                     <button class="button button_type_edit" type="button">
-                        <img class="button__edit-image" src="./images/edit-image.svg" alt="Карандаш">  
+                        <img class="button__edit-image" src="<%=require('./images/edit-image.svg')%>" alt="Карандаш">
                     </button>
                     <button class="button button_type_add" type="button">
-                        <img class="button__add-image" src="./images/add-image.svg" alt="Плюс">
+                        <img class="button__add-image" src="<%=require('./images/add-image.svg')%>" alt="Плюс">
                     </button>
                 </div>
             </section>
@@ -100,6 +100,6 @@
             </li>
         </template>
     </div>
-    <script type="module" src="./pages/index.js"></script> 
+   <!-- <script type="module" src="./pages/index.js"></script> -->
 </body>
 </html>

@@ -1,10 +1,11 @@
+import './index.css';
 
 import {Card} from  '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {Section} from '../components/Section.js';
-import { UserInfo } from '../components/UserInfo.js';
+import {UserInfo} from '../components/UserInfo.js';
 
 
 import {editButton, nameInput,
@@ -12,9 +13,9 @@ import {editButton, nameInput,
     formValidators, initialCards, validationProps} from '../utils/constants.js';
 
 const handleCardClick = (name, link) => {
-    const imagePrewiew = new PopupWithImage ('.popup_type_image');
-    imagePrewiew.setEventListeners();
-    imagePrewiew.open(link, name);
+    const imagePopup = new PopupWithImage ('.popup_type_image');
+    imagePopup.setEventListeners();
+    imagePopup.open(link, name);
 }
 
 const cardList = new Section ({
