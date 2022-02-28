@@ -12,18 +12,26 @@ import {editButton, nameInput,
     jobInput, addButton,addFormTitle, addFormLink,
     formValidators, initialCards, validationProps} from '../utils/constants';
 
+const imagePopup = new PopupWithImage ('.popup_type_image');
+
 const handleCardClick = (name, link) => {
-    const imagePopup = new PopupWithImage ('.popup_type_image');
     imagePopup.setEventListeners();
     imagePopup.open(link, name);
+}
+
+const createCard = (item) => {
+    const card = new Card (item, '.card-template', handleCardClick);
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
 }
 
 const cardList = new Section ({
     items: initialCards.reverse(),
     renderer: (cardItem) => {
-        const card = new Card (cardItem, '.card-template', handleCardClick);
-        const cardElement = card.generateCard();
-        cardList.addItem(cardElement);
+        // const card = new Card (cardItem, '.card-template', handleCardClick);
+        // const cardElement = card.generateCard();
+        // cardList.addItem(cardElement);
+        createCard(cardItem);
     }
 }, '.elements');
 
@@ -32,10 +40,11 @@ cardList.renderItems();
 const cardAddForm = new PopupWithForm ('.popup_type_add', () => {
    const inputValues = {name: addFormTitle.value, link: addFormLink.value }
    
-        const newCard = new Card (inputValues, '.card-template', handleCardClick);
-        const newCardElement = newCard.generateCard();
-        cardList.addItem(newCardElement);  
-        cardAddForm.close();      
+        // const newCard = new Card (inputValues, '.card-template', handleCardClick);
+        // const newCardElement = newCard.generateCard();
+        // cardList.addItem(newCardElement);
+    createCard(inputValues);
+    cardAddForm.close();
     });
 
 addButton.addEventListener('click', () => {
