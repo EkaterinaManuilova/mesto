@@ -28,9 +28,6 @@ const createCard = (item) => {
 const cardList = new Section ({
     items: initialCards.reverse(),
     renderer: (cardItem) => {
-        // const card = new Card (cardItem, '.card-template', handleCardClick);
-        // const cardElement = card.generateCard();
-        // cardList.addItem(cardElement);
         createCard(cardItem);
     }
 }, '.elements');
@@ -39,10 +36,6 @@ cardList.renderItems();
 
 const cardAddForm = new PopupWithForm ('.popup_type_add', () => {
    const inputValues = {name: addFormTitle.value, link: addFormLink.value }
-   
-        // const newCard = new Card (inputValues, '.card-template', handleCardClick);
-        // const newCardElement = newCard.generateCard();
-        // cardList.addItem(newCardElement);
     createCard(inputValues);
     cardAddForm.close();
     });
