@@ -15,9 +15,10 @@ import {editButton, nameInput,
 const imagePopup = new PopupWithImage ('.popup_type_image');
 
 const handleCardClick = (name, link) => {
-    imagePopup.setEventListeners();
     imagePopup.open(link, name);
 }
+
+imagePopup.setEventListeners();
 
 const createCard = (item) => {
     const card = new Card (item, '.card-template', handleCardClick);
