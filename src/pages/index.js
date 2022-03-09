@@ -48,10 +48,10 @@ addButton.addEventListener('click', () => {
 
 cardAddForm.setEventListeners();
 
-const userInfo = new UserInfo ('.profile__username', '.profile__userjob');
+const userInfo = new UserInfo ('.profile__username', '.profile__job');
 
-const profileEditForm = new PopupWithForm ('.popup_type_edit', () => {
-    userInfo.setUserInfo(nameInput.value, jobInput.value);
+const profileEditForm = new PopupWithForm ('.popup_type_edit', (inputValues) => {
+    userInfo.setUserInfo(inputValues.username, inputValues.profession);
     profileEditForm.close();
 });
 
