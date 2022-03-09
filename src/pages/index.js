@@ -9,7 +9,7 @@ import {UserInfo} from '../components/UserInfo';
 
 
 import {editButton, nameInput,
-    jobInput, addButton,addFormTitle, addFormLink,
+    jobInput, addButton, profileAvatarButton, avatarImage,
     formValidators, initialCards, validationProps} from '../utils/constants';
 
 const imagePopup = new PopupWithImage ('.popup_type_image');
@@ -35,9 +35,9 @@ const cardList = new Section ({
 
 cardList.renderItems();
 
-const cardAddForm = new PopupWithForm ('.popup_type_add', () => {
-   const inputValues = {name: addFormTitle.value, link: addFormLink.value }
-    createCard(inputValues);
+const cardAddForm = new PopupWithForm ('.popup_type_add', (inputValues) => {
+   const data = {name:inputValues.name, link:inputValues.link }
+    createCard(data);
     cardAddForm.close();
     });
 
@@ -51,7 +51,8 @@ cardAddForm.setEventListeners();
 const userInfo = new UserInfo ('.profile__username', '.profile__job');
 
 const profileEditForm = new PopupWithForm ('.popup_type_edit', (inputValues) => {
-    userInfo.setUserInfo(inputValues.username, inputValues.profession);
+   const user = {name: inputValues.username, job:  inputValues.profession}
+    userInfo.setUserInfo(user);
     profileEditForm.close();
 });
 
@@ -64,6 +65,19 @@ editButton.addEventListener('click', () => {
 });
 
 profileEditForm.setEventListeners();
+
+const avatarChangeForm = new PopupWithForm('.popup_type_avatar', (inputValues) => {
+    avatarImage.src = inputValues.avatar;
+    avatarImage.alt = 'Ваш новый аватар';
+    avatarChangeForm.close();
+});
+
+profileAvatarButton.addEventListener('click', () => {
+    avatarChangeForm.open();
+    formValidators['avatarForm'].resetValidation();
+});
+
+avatarChangeForm.setEventListeners();
 
 const enableValidation = (validationProps) => {
     const formList = Array.from(document.querySelectorAll(validationProps.formSelector));

@@ -3,6 +3,9 @@ export const editButton = document.querySelector('.button_type_edit');
 export const nameInput = document.querySelector('.form__input_name_username');
 export const jobInput = document.querySelector('.form__input_name_profession');
 
+export const profileAvatarButton = document.querySelector('.profile__avatar-edit');
+export const avatarImage = document.querySelector('.profile__avatar-img');
+
 export const cardsContainer = document.querySelector('.elements');
 export const addButton = document.querySelector('.button_type_add');
 

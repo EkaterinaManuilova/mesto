@@ -9,8 +9,8 @@ export class UserInfo {
         info.job = this._userJob.textContent;
         return info;
     }
-    setUserInfo(nameNew, jobNew) {
-        this._userName.textContent = nameNew;
-        this._userJob.textContent = jobNew;
+    setUserInfo(data) {
+        this._userName.textContent = data.name;
+        this._userJob.textContent = data.job;
     }
 }
