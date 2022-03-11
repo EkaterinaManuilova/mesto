@@ -6,7 +6,7 @@ import {PopupWithForm} from '../components/PopupWithForm';
 import {PopupWithImage} from '../components/PopupWithImage';
 import {Section} from '../components/Section';
 import {UserInfo} from '../components/UserInfo';
-import {api} from '../components/Api';
+import {api} from '../components/Api.js';
 
 
 import {editButton, nameInput,
