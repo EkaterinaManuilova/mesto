@@ -10,8 +10,8 @@ import {api} from '../components/Api.js';
 
 
 import {editButton, nameInput,
-    jobInput, addButton, profileAvatarButton, avatarImage,
-    formValidators, initialCards, validationProps} from '../utils/constants';
+    jobInput, addButton, profileAvatarButton,
+    formValidators, validationProps} from '../utils/constants';
 
 let userId
 
@@ -27,53 +27,67 @@ api.getProfile()
     userId = res._id
 })
 
-api.getInitialCards()
-.then(cards =>  {
-    cards.reverse().forEach(data => {
-        const card = createCard({
-            name: data.name, 
-            link: data.link,
-            likes: data.likes,
-            id: data._id,
-            userId: userId,
-            ownerId: data.owner._id
-        })
-        cardList.addItem(card)
-    })
+const userInfo = new UserInfo ('.profile__username', '.profile__job', '.profile__avatar-img');
+
+const profileEditForm = new PopupWithForm ('.popup_type_edit', (inputValues) => {
+    profileEditForm.renderLoading(true)
+   const user = {name: inputValues.username, about:  inputValues.profession}
+   api.editProfile(user.name, user.about)
+   .then(() => {
+    userInfo.setUserInfo(user)
+    profileEditForm.close();
+   })
+   .finally(() => {
+       profileEditForm.renderLoading(false)
+   })
 })
 
-const imagePopup = new PopupWithImage ('.popup_type_image');
+editButton.addEventListener('click', () => { 
+    const info = userInfo.getUserInfo()
+    nameInput.value = info.name
+    jobInput.value = info.about
+    profileEditForm.open()
+    formValidators['editForm'].resetValidation()
+})
 
-// const handleCardClick = (name, link) => {
-//     imagePopup.open(link, name);
-// }
+profileEditForm.setEventListeners()
 
-imagePopup.setEventListeners();
+const avatarChangeForm = new PopupWithForm('.popup_type_avatar', (inputValues) => {
+    avatarChangeForm.renderLoading(true)
+    const data = {avatar:inputValues.avatar}
+    api.updateAvatar(data.avatar)
+    .then(() => {
+        userInfo.setUserAvatar(data)
+        avatarChangeForm.close()
+    })
+   .finally(() => {
+    avatarChangeForm.renderLoading(false)
+   })
+})
 
-// const handledDeleteClick = (id) => {
-//     confirmDeletePopup.open();
+profileAvatarButton.addEventListener('click', () => {
+    avatarChangeForm.open()
+    formValidators['avatarForm'].resetValidation()
+})
 
-//     confirmDeletePopup.changeSubmitHandler(() => {
-//         api.deleteCard(id)
-//         .then(res => {
-//             card.handleDeleteCard()
-//             cardAddForm.close()
-//             console.log(res)
-//         })
-//     });
-// }
+avatarChangeForm.setEventListeners()
+
+const imagePopup = new PopupWithImage ('.popup_type_image')
+
+imagePopup.setEventListeners()
 
 const createCard = (item) => {
-    const card = new Card (item, 
+    const card = new Card (
+        item, 
         '.card-template', 
         () => {
-            imagePopup.open(item.link, item.name);
+            imagePopup.open(item.link, item.name)
         }, 
         (id) => {
             confirmDeleteForm.open()
             confirmDeleteForm.changeSubmitHandler(() => {
                 api.deleteCard(id)
-                .then(res => {
+                .then(() => {
                     card.deleteCard()
                     confirmDeleteForm.close()
                 })
@@ -91,29 +105,41 @@ const createCard = (item) => {
                     card.setLikes(res.likes)
                 })
             }           
-        });
-    
-    // cardList.addItem(cardElement);
-    return card.generateCard();
+        })
+    return card.generateCard()
 }
 
-const cardList = new Section ({
-    items: [],//initialCards.reverse(),
-    renderer: (cardItem) => {
-        createCard(cardItem);
-    }
-}, '.elements');
+api.getInitialCards()
+.then(cards =>  {
+    cards.reverse().forEach(data => {
+        const card = createCard(
+            {
+            name: data.name, 
+            link: data.link,
+            likes: data.likes,
+            id: data._id,
+            userId: userId,
+            ownerId: data.owner._id
+        })
+        cardList.addItem(card)
+    })
+})
 
-cardList.renderItems();
+const cardList = new Section ({
+    items: [],
+    renderer: (cardItem) => {
+        createCard(cardItem)
+    }
+}, '.elements')
 
 const cardAddForm = new PopupWithForm ('.popup_type_add', (inputValues) => {
     cardAddForm.renderLoading(true)
    api.addCard(inputValues.name, inputValues.link)
    .then(res => {
-       const data = {name: res.name, link: res.link, likes: res.likes, id: res._id, ownerId: res.owner._id}
+       const data = {name: res.name, link: res.link, likes: res.likes, id: res._id, userId: userId, ownerId: res.owner._id}
         const card =  createCard(data)
-        cardList.addItem(card);
-        cardAddForm.close();
+        cardList.addItem(card)
+        cardAddForm.close()
    })
    .finally(() => {
        cardAddForm.renderLoading(false)
@@ -127,71 +153,21 @@ addButton.addEventListener('click', () => {
 
 cardAddForm.setEventListeners();
 
-const userInfo = new UserInfo ('.profile__username', '.profile__job', '.profile__avatar-img');
+cardList.renderItems()
 
-const profileEditForm = new PopupWithForm ('.popup_type_edit', (inputValues) => {
-    profileEditForm.renderLoading(true)
-   const user = {name: inputValues.username, about:  inputValues.profession}
-   api.editProfile(user.name, user.about)
-   .then(() => {
-    userInfo.setUserInfo(user)
-    profileEditForm.close();
-   })
-   .finally(() => {
-       profileEditForm.renderLoading(false)
-   })
-});
+const confirmDeleteForm = new PopupWithForm('.popup_type_confirm-del')
 
-editButton.addEventListener('click', () => { 
-    const info = userInfo.getUserInfo();
-    nameInput.value = info.name;
-    jobInput.value = info.about;
-    profileEditForm.open();
-    formValidators['editForm'].resetValidation();
-});
-
-profileEditForm.setEventListeners();
-
-const confirmDeleteForm = new PopupWithForm('.popup_type_confirm-del'
-//  () => {
-//     api.deleteCard()
-// }
-);
-
-confirmDeleteForm.setEventListeners();
-
-const avatarChangeForm = new PopupWithForm('.popup_type_avatar', (inputValues) => {
-    avatarChangeForm.renderLoading(true)
-    const data = {avatar:inputValues.avatar}
-    api.updateAvatar(data.avatar)
-    .then(() => {
-        // console.log('res', res)
-        // avatarImage.src = res.avatar;
-        // avatarImage.alt = 'Ваш новый аватар';
-        userInfo.setUserAvatar(data)
-        avatarChangeForm.close();
-    })
-   .finally(() => {
-    avatarChangeForm.renderLoading(false)
-   })
-});
-
-profileAvatarButton.addEventListener('click', () => {
-    avatarChangeForm.open();
-    formValidators['avatarForm'].resetValidation();
-});
-
-avatarChangeForm.setEventListeners();
+confirmDeleteForm.setEventListeners()
 
 const enableValidation = (validationProps) => {
-    const formList = Array.from(document.querySelectorAll(validationProps.formSelector));
+    const formList = Array.from(document.querySelectorAll(validationProps.formSelector))
     formList.forEach((formElement) => {
-      const validator = new FormValidator(validationProps, formElement);
-      const formName = formElement.getAttribute('name');
+      const validator = new FormValidator(validationProps, formElement)
+      const formName = formElement.getAttribute('name')
   
-      formValidators[formName] = validator;
-      validator.enableValidation();
-    });
+      formValidators[formName] = validator
+      validator.enableValidation()
+    })
 }
   
-enableValidation(validationProps);
+enableValidation(validationProps)
