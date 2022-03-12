@@ -32,7 +32,6 @@ export class PopupWithForm extends Popup {
             this._btn.textContent = this._btnText;
         }
     }
-
     close()  {
         this._form.reset();
         super.close();

@@ -13,11 +13,9 @@ export class UserInfo {
     setUserInfo(data) {
         this._userName.textContent = data.name;
         this._userJob.textContent = data.about;
-        // this._avatar.src = data.avatar;
-        // this._avatar.alt = 'новый аватар'
     }
     setUserAvatar(data) {
         this._avatar.src = data.avatar;
-        this._avatar.alt = 'Мой новый аватар'
+        this._avatar.alt = 'Мой новый аватар';
     }
 }
