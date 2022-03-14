@@ -3,19 +3,23 @@ class Api {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
     }
+    _getResponseData(res) {
+        if(!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`)
+        }
+        return res.json();
+    }
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
     }
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
       }
     editProfile(name, about) {
         return fetch(`${this._baseUrl}/users/me`, {
@@ -26,8 +30,7 @@ class Api {
                 about: about
               })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
     }
     addCard(name, link) {
         return fetch(`${this._baseUrl}/cards`, {
@@ -38,32 +41,28 @@ class Api {
                 link: link
               })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
     }
     deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
     }
     deleteLike(id) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
     }
     addLike(id) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: 'PUT',
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
     }
     updateAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -73,8 +72,7 @@ class Api {
                 avatar: avatar
               })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-        .catch(console.log)
+        .then(this._getResponseData)
     }
 }
 

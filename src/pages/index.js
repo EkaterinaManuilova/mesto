@@ -16,7 +16,7 @@ import {editButton, nameInput,
 let userId
 
 api.getProfile()
-.then(res => {
+    .then(res => {
     const data = {
         name: res.name,
         about: res.about,
@@ -25,7 +25,8 @@ api.getProfile()
     userInfo.setUserInfo(data)
     userInfo.setUserAvatar(data)
     userId = res._id
-})
+    })
+    .catch((err) => console.log(err))
 
 const userInfo = new UserInfo ('.profile__username', '.profile__job', '.profile__avatar-img');
 
@@ -33,13 +34,14 @@ const profileEditForm = new PopupWithForm ('.popup_type_edit', (inputValues) => 
     profileEditForm.renderLoading(true)
    const user = {name: inputValues.username, about:  inputValues.profession}
    api.editProfile(user.name, user.about)
-   .then(() => {
-    userInfo.setUserInfo(user)
-    profileEditForm.close();
-   })
-   .finally(() => {
+       .then(() => {
+        userInfo.setUserInfo(user)
+        profileEditForm.close();
+        })
+       .catch((err) => console.log(err))
+       .finally(() => {
        profileEditForm.renderLoading(false)
-   })
+       })
 })
 
 editButton.addEventListener('click', () => { 
@@ -56,13 +58,14 @@ const avatarChangeForm = new PopupWithForm('.popup_type_avatar', (inputValues) =
     avatarChangeForm.renderLoading(true)
     const data = {avatar:inputValues.avatar}
     api.updateAvatar(data.avatar)
-    .then(() => {
+        .then(() => {
         userInfo.setUserAvatar(data)
         avatarChangeForm.close()
-    })
-   .finally(() => {
-    avatarChangeForm.renderLoading(false)
-   })
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+            avatarChangeForm.renderLoading(false)
+        })
 })
 
 profileAvatarButton.addEventListener('click', () => {
@@ -87,30 +90,33 @@ const createCard = (item) => {
             confirmDeleteForm.open()
             confirmDeleteForm.changeSubmitHandler(() => {
                 api.deleteCard(id)
-                .then(() => {
+                    .then(() => {
                     card.deleteCard()
                     confirmDeleteForm.close()
-                })
+                    })
+                    .catch((err) => console.log(err))
             })
         },
         (id) => {
             if (card.isLiked()) {
                 api.deleteLike(id)
-            .then(res => {
-                card.setLikes(res.likes)
-            })
+                    .then(res => {
+                        card.setLikes(res.likes)
+                    })
+                    .catch((err) => console.log(err))
             } else {
                 api.addLike(id)
-                .then(res => {
+                    .then(res => {
                     card.setLikes(res.likes)
-                })
-            }           
+                    })
+                    .catch((err) => console.log(err))
+            }
         })
     return card.generateCard()
 }
 
 api.getInitialCards()
-.then(cards =>  {
+    .then(cards =>  {
     cards.reverse().forEach(data => {
         const card = createCard(
             {
@@ -123,7 +129,8 @@ api.getInitialCards()
         })
         cardList.addItem(card)
     })
-})
+    })
+    .catch((err) => console.log(err))
 
 const cardList = new Section ({
     items: [],
@@ -135,16 +142,17 @@ const cardList = new Section ({
 const cardAddForm = new PopupWithForm ('.popup_type_add', (inputValues) => {
     cardAddForm.renderLoading(true)
    api.addCard(inputValues.name, inputValues.link)
-   .then(res => {
+       .then(res => {
        const data = {name: res.name, link: res.link, likes: res.likes, id: res._id, userId: userId, ownerId: res.owner._id}
         const card =  createCard(data)
         cardList.addItem(card)
         cardAddForm.close()
-   })
-   .finally(() => {
+       })
+       .catch((err) => console.log(err))
+       .finally(() => {
        cardAddForm.renderLoading(false)
-   })
-    });
+       })
+});
 
 addButton.addEventListener('click', () => {
         cardAddForm.open();
