@@ -15,18 +15,60 @@ import {editButton, nameInput,
 
 let userId
 
-api.getProfile()
-    .then(res => {
-    const data = {
-        name: res.name,
-        about: res.about,
-        avatar: res.avatar
-    }
-    userInfo.setUserInfo(data)
-    userInfo.setUserAvatar(data)
-    userId = res._id
+Promise.all([api.getProfile(), api.getInitialCards()])
+    .then(([profile,cards]) => {
+        const user = {
+            name: profile.name,
+            about: profile.about,
+            avatar: profile.avatar
+        }
+        userInfo.setUserInfo(user)
+        userInfo.setUserAvatar(user)
+        userId = profile._id
+
+        cards.reverse().forEach(data => {
+            const card = createCard(
+                {
+                    name: data.name,
+                    link: data.link,
+                    likes: data.likes,
+                    id: data._id,
+                    userId: userId,
+                    ownerId: data.owner._id
+                })
+            cardList.addItem(card)
+        })
+
     })
     .catch((err) => console.log(err))
+// api.getProfile()
+//     .then(res => {
+//     const data = {
+//         name: res.name,
+//         about: res.about,
+//         avatar: res.avatar
+//     }
+//     userInfo.setUserInfo(data)
+//     userInfo.setUserAvatar(data)
+//     userId = res._id
+//     })
+//     .catch((err) => console.log(err))
+// api.getInitialCards()
+//     .then(cards =>  {
+//         cards.reverse().forEach(data => {
+//             const card = createCard(
+//                 {
+//                     name: data.name,
+//                     link: data.link,
+//                     likes: data.likes,
+//                     id: data._id,
+//                     userId: userId,
+//                     ownerId: data.owner._id
+//                 })
+//             cardList.addItem(card)
+//         })
+//     })
+//     .catch((err) => console.log(err))
 
 const userInfo = new UserInfo ('.profile__username', '.profile__job', '.profile__avatar-img');
 
@@ -114,23 +156,6 @@ const createCard = (item) => {
         })
     return card.generateCard()
 }
-
-api.getInitialCards()
-    .then(cards =>  {
-    cards.reverse().forEach(data => {
-        const card = createCard(
-            {
-            name: data.name, 
-            link: data.link,
-            likes: data.likes,
-            id: data._id,
-            userId: userId,
-            ownerId: data.owner._id
-        })
-        cardList.addItem(card)
-    })
-    })
-    .catch((err) => console.log(err))
 
 const cardList = new Section ({
     items: [],
